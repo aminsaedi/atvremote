@@ -51,7 +51,6 @@ type RemoteData struct {
 // recreate a complete protobuf message from multiple chunks
 // each new message is sent to handleData
 func (c *Command) processData(read_size int, size_to_read int, buffer *[]byte, total_data *[]byte) int {
-
 	if read_size < size_to_read {
 		// not enough data
 		size_to_read -= read_size
@@ -153,6 +152,9 @@ func (c *Command) Connect() error {
 	go c.readLoop()
 
 	c.sendConfiguration()
+
+	// wait for the device to be ready
+	time.Sleep(time.Millisecond * 100)
 
 	return nil
 }
