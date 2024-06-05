@@ -154,7 +154,7 @@ func (c *Command) Connect() error {
 	c.sendConfiguration()
 
 	// wait for the device to be ready
-	time.Sleep(time.Millisecond * 100)
+	time.Sleep(time.Millisecond * 500)
 
 	return nil
 }
